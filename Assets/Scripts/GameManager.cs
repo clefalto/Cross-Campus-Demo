@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     //All references:
     [SerializeField] LocationManager locationManager;
+    [SerializeField] ScheduleMenuManager scheduleManager;
     //LocationManager
 
     // All Serialized Vars:
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public SavedTimeAndDay savedTimeAndDay; // SET IN INSPECTOR
     public MascotState mascotState;
 
+
     void Awake()
     {
         if (instance != null)
@@ -37,6 +39,11 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         player = GameObject.Find("Player")?.GetComponent<Player>();
+    }
+
+    private void Start()
+    {
+        scheduleManager.RegisterMascots(mascotList);
     }
 
 
