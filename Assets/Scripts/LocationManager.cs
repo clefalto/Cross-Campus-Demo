@@ -72,6 +72,7 @@ public class LocationManager : MonoBehaviour
                 gameManager.player.SetCalendar(playerCalendar);
             }
         }
+        mascotList = gameManager.mascotList; // why are there like 3 different mascotlists
     }
 
     public static LocationManager GetInstance()

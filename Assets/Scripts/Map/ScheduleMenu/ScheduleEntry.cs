@@ -52,7 +52,6 @@ public class ScheduleEntry : MonoBehaviour
             {
                 timeLocations.Add(t, mascotCalendar.GetLocation(t, d));
             }
-            Debug.Log(days);
             days[d].SetSlots(timeLocations);
         }
 
@@ -73,7 +72,6 @@ public class ScheduleEntry : MonoBehaviour
         {
             if (icon.mascotName == mascotName.ToLower())
             {
-                Debug.Log("returning icon!");
                 return icon.icon;
             }
         }
