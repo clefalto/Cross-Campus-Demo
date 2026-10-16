@@ -39,6 +39,11 @@ public class LocationManager : MonoBehaviour
     
     public Calendar playerCalendar;
 
+
+
+    // ... events?
+    public event Action TimeUpdated;
+
     private void Awake()
     {
         if (instance != null) 
@@ -297,6 +302,7 @@ public class LocationManager : MonoBehaviour
     {
         foreach (GameObject mascot in mascotList)
             mascot.GetComponent<Mascot>().UpdateLocation(gameManager.currentTimeSlot, gameManager.currentDay);
+        TimeUpdated?.Invoke();
     }
 
     // given a location (string) convert it to a Location (enum)

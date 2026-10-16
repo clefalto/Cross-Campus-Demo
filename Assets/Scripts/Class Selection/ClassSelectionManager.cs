@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ClassSelectionManager : MonoBehaviour
 {
@@ -201,5 +202,7 @@ public class ClassSelectionManager : MonoBehaviour
         GameObject player = new GameObject("Player");
         player.AddComponent<Player>();
         DontDestroyOnLoad(player); // make player a persistent object in every scene so you can easily gameobject.find() it??
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("CampusMap");
     }
 }

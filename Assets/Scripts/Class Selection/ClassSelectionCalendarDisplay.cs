@@ -14,7 +14,7 @@ public class ClassSelectionCalendarDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        calendar = GetComponent<Calendar>();
+        //calendar = GetComponent<Calendar>();
         calendarText = obj_calendarDisplay.GetComponent<TextMeshProUGUI>();
         
         // clear the text field of all the calendar cells

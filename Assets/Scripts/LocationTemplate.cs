@@ -18,9 +18,28 @@ public class LocationTemplate : MonoBehaviour, IPointerEnterHandler, IPointerExi
     private Camera uiCam;
     public Collider boundingPolygon;
     public Image sprite;
+
+    public IconDisplayer iconDisplayer;
     
     private bool tooltipActive = false;
-    
+
+    public void Awake()
+    {
+        iconDisplayer = GetComponentInChildren<IconDisplayer>();
+    }
+
+    public void Start()
+    {
+        GameObject.Find("LocationManager").GetComponent<LocationManager>().TimeUpdated += OnTimeUpdated;
+        iconDisplayer.transform.position = GetComponent<PolygonCollider2D>().bounds.center;
+    }
+
+    public void OnTimeUpdated()
+    {
+        mascotList = GameObject.Find("LocationManager")?.GetComponent<LocationManager>().GetMascotsAtLocation(locationName);
+        iconDisplayer.UpdateMascotList(mascotList);
+    }
+
     public void OnPointerEnter(PointerEventData data)
     {
         uiCam = data.enterEventCamera;
@@ -32,8 +51,6 @@ public class LocationTemplate : MonoBehaviour, IPointerEnterHandler, IPointerExi
         tempTooltip.transform.SetAsLastSibling(); // render on top of other ui elements !
         // high z index
         tempTooltip.transform.position = data.position + new Vector2(10, 10);
-        
-        mascotList = GameObject.Find("LocationManager")?.GetComponent<LocationManager>().GetMascotsAtLocation(locationName);
         
         string mascotListString = "";
         Debug.Log(mascotList.Count);
